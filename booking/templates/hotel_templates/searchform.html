@@ -1,0 +1,573 @@
+{% extends 'base.html' %}
+{% block hotel %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+     <!--minstyle-->
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Card Slider</title>
+     <!-- Slick Carousel CSS -->
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+     <!-- Slick Carousel Theme CSS -->
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+     <!-- Font Awesome CSS (assuming you're using Font Awesome for icons) -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  
+  <!--uptohere-->
+  
+<style>
+    .custom-code {
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: auto;
+            color: white;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            margin-bottom: 16px;
+            position: absolute;
+            bottom: 20px;
+            margin-left: 20px;
+
+        }
+
+      
+
+/* Adjustments for card slider */
+#cCarousel-inner {
+  display: flex;
+  flex-wrap: nowrap; 
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.cCarousel-item {
+  flex: 0 0 auto;
+  width: 100%; 
+  scroll-snap-align: start; 
+}
+
+  #cCarousel {
+    position: relative;
+    max-width: 1100px;
+    margin: auto;
+  }
+  #cCarousel #prev {
+    left: -10px;
+    margin-top: -4%;
+  }
+  
+  #cCarousel #next {
+    right: -10px;
+    margin-top: -4%;
+  }
+  
+  
+  
+  
+  #cCarousel .arrow {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 26px;
+    color: rgb(180, 35, 35);
+    background: #a1171772;
+    cursor: pointer;
+  }
+  
+  
+  h4{
+      color:coral;
+      text-shadow: 1px 1px black;
+      text-align: center;
+  }
+
+
+#img{
+    /* border:1px solid #ddd; */
+    /* border-top-right-radius: 35%; */
+    /* border-bottom-right-radius: 10%; */
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
+    height:100%;
+    width: 100%;
+   
+}
+
+#content{
+    color:black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    
+}
+ .bd{
+    border:1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    height: 88%;
+    overflow: hidden;
+    position: relative;
+} 
+
+/* .bd{
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}   */
+
+
+</style>
+
+
+<style>
+  
+.accordion-item {
+    background-color: #FFFFFF; /* White background for items */
+    border: 1px solid #E0E0E0; /* Light border */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Softer shadow */
+            width: 80%;
+       
+}
+
+.accordion-header {
+    background-color: rgb(199, 204, 209); /* Soft purple */
+    color: black; /* White text */
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-radius: 8px 8px 0 0;
+    -webkit-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #a8a7ca; 
+  
+}
+.accordion-header.active {
+  background-color: #a8a7ca; 
+    color:black; 
+}
+
+
+.icon {
+    -webkit-transition: -webkit-transform 0.3s ease;
+    transition: -webkit-transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.active .icon {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+
+.accordion-content {
+    background-color: #FAFAFA; /* Very light grey for content */
+    overflow: hidden;
+    padding: 0 15px;
+    max-height: 0;
+    -webkit-transition: max-height 0.3s ease;
+    -o-transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease;
+    width: 100%;
+    text-align: justify;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+#op{
+  color: rgb(49, 48, 48);
+  font-size: 20px;
+}
+
+</style>
+
+<style>
+  #q {
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid rgb(198, 81, 13);
+  }
+
+  .navsearch{
+      
+    background-image: url(https://cdn.pixabay.com/photo/2018/08/02/22/48/dunes-3580666_1280.jpg);
+    border-radius: 10px; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: black;
+
+  }
+  .h4{
+    
+    color:rgb(56, 153, 53);
+    text-shadow: 1px 1px black;
+    text-align: center;
+    font-size: 30px;
+ 
+  }
+  #Why:hover{
+    background-color: #e7e7c3;
+  }
+  .container {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+.card-title{
+  font-size: 18px;
+  margin-top: -10px;
+
+}
+.fixed-button {
+    position:absolute; 
+    bottom: 10px; 
+    right: 70px; 
+    z-index: 1; 
+    
+}
+@media (max-width: 768px) {
+    .offset-md-6 {
+        margin-left: 20px !important;
+    }
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container" style="justify-content: center;">
+        <form id="searchForm" class="mt-3">
+          {% csrf_token %}
+          <div class="pt-3 pb-4">
+            <div class="container navsearch p-4">
+              <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-4">
+                  <div class="mb-3" style="text-align: center;">
+                    <b><label for="city">City Name</label></b>
+                    <input type="text" name="city" id="city" class="form-control" placeholder="Search city...">
+                  </div>
+                </div>
+              </div>
+      
+              <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-8">
+                  <div class="flight-search-container row">
+                    <div class="col-md-4">
+                      <b><label class="form-label">Check-In:</label></b>
+                      <input type="date" class="form-control" name="checkin" id="checkin">
+                    </div>
+
+                    <div class="col-md-4">
+                      <b><label class="form-label">Check-Out:</label></b>
+                      <input type="date" class="form-control" name="checkout" id="checkout">
+                    </div>
+
+                    <div class="col-md-4">
+                      <b><label class="form-label">Rooms:</label></b>
+                      <input type="number" class="form-control mb-2" id="Rooms" placeholder="Rooms">
+                    </div>
+                    
+                  
+                  </div>
+                </div>
+              </div>
+      
+              <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-8">
+                  <div class="flight-search-container row">
+
+                    <div class="col-md-4">
+                      <b><label class="form-label">Guests:</label></b>
+                      <input type="number" class="form-control mb-2" id="Guests" placeholder="Guests">
+                    </div>
+
+                    <div class="col-md-4">
+                      <b><label class="form-label">Children:</label></b>
+                      <input type="number" class="form-control mb-2" id="children" placeholder="Childrens">
+                    </div>
+
+                   
+                      <div class="row">
+                          <div class="col-md-4 offset-md-4 d-flex align-items-center justify-content-center mt-4 mr-6">
+                              <button type="button" class="search-button btn btn-info" style="width: 140px; font-size: 22px; background-color: rgb(65, 65, 231); border-radius: 15px;">Search</button>
+                          </div>
+                      </div>
+                  
+
+
+                    
+                    
+                      </div>
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+      
+              <div id="feedbackMessage" class="row justify-content-center mt-3"></div>
+      
+            </div>
+          </div>
+        </form>
+      </div>
+
+<script>      
+          // Form Submission via JavaScript
+          document.querySelector('.search-button').addEventListener('click', function() {
+            var city = document.getElementById('city').value;
+            var checkin = document.getElementById('checkin').value;
+            var checkout = document.getElementById('checkout').value;
+            var guests = document.getElementById('guests').value;
+            var rooms = document.getElementById('rooms').value;
+            var children = document.getElementById('children').value;
+      
+            // Perform form validation here
+            if (city.trim() === '' || checkin.trim() === '' || checkout.trim() === '') {
+              displayFeedback('Please fill in all fields.', 'error');
+              return;
+            }
+      
+            // Perform form submission (ajax or redirection) here
+            displayFeedback('Form submitted successfully.', 'success');
+          });
+      
+          // Clear Button Functionality
+          document.querySelector('.clear-button').addEventListener('click', function() {
+            document.getElementById('searchForm').reset();
+          });
+      
+          // Feedback Message Function
+          function displayFeedback(message, type) {
+            var feedbackElement = document.getElementById('feedbackMessage');
+            feedbackElement.innerHTML = '<div class="col-md-8 col-lg-8"><div class="alert alert-' + type + '" role="alert">' + message + '</div></div>';
+          }
+        });
+      </script>
+      
+
+      <div id="card-slider-container">
+        <h4 class="mt-5">Hotel Offers</h4>
+        <div id="cCarousel">
+          <div class="arrow" id="prev"><i class="fa-solid fa-chevron-left"></i></div>
+          <div class="arrow" id="next"><i class="fa-solid fa-chevron-right"></i></div>
+          <div id="carousel-vp">
+            <div id="cCarousel-inner">
+              {% for i in res %}
+              <article class="cCarousel-item  ">
+                <div class="col-md-4 mb-3" style="max-width: 560px; height:240px;">
+                  <a class="text-decoration-none" href="{{i.url}}">
+                    <div class="row no-gutters bd" style="background-color: {% cycle 'rgb(207, 207, 252)' 'rgb(252, 214, 220)' 'rgb(202, 253, 189)' 'rgb(228, 224, 224)' 'rgb(219, 201, 188)' %}" >
+                      <div class="col-md-4">
+                        <img src="{{i.image}}" class="card-img" height="200px" width="150px" id="img">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body" >
+                          <h6 class="card-title" id="title">{{i.title}}</h6>
+                          <p id="content">{{i.content}}</p>
+                        </div>&nbsp;
+                        <!-- <input type="button" value="Book Now" class="btn btn-sm btn-primary w-20" style="margin-top: -30px ;"><br> -->
+                        <p><span class="custom-code">{{i.Book_now}}</span></p> 
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+     <!-- Slick Carousel JS -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('#cCarousel-inner').slick({
+        infinite: true,
+        slidesToShow: 3, /* Show one card at a time */
+        slidesToScroll: 1,
+        prevArrow: $('#prev'),
+        nextArrow: $('#next'),
+        autoplay: {
+          delay: 4000
+        }
+      });
+    });
+
+  </script>
+    
+
+
+
+ <h4 class="text-center h4 mt-4">Why you choose 'TEERDHA' for bookings?</h4><br>
+
+        <!-- {% for i in k %}
+        <div class="container mt-3" id="q">
+            <h><b>{{i.ques}}</b></h>
+            <p>{{i.ans}}</p>
+        </div><br>
+        {% endfor %} -->
+
+
+
+        {% for i in k %}
+        <div class="container mt-3" id="Why" style="border: 1px solid black; border-radius: 10px; padding: 20px 20px; width: 70%;"> 
+            <div  class="row text-left" style="margin-left: 10px;">
+                <p id="op"><b>{{ i.ques }}</b></p>
+                {% if forloop.counter == 12 %}
+                    <p style="margin-top: 35px;">{{ i.ans}}</p>
+                {% else %}
+                    <p>{{ i.ans }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+    <br>
+        <center><h4  class="text-center h4 mt-5">Hotel FAQ'S</h4></center><br><br>
+
+
+      
+<center>
+        <div class="container">
+         
+            {% if kl %}
+            {% for faq_item in kl %}
+          
+                <div class="accordion-item">
+                
+                    <div class="accordion-header" onclick="toggleAccordion({{ faq_item.id }})">
+                        {{ faq_item.question }}
+                        <div class="icon">&#43;</div>
+                    </div>
+                    <div class="accordion-content" id="accordion-content-{{ faq_item.id }}">
+                        <p>{{ faq_item.answer }} </p>
+                        
+                    </div>
+                    
+                </div>
+            
+                <!-- <script>
+                    // Set initial state for each accordion item
+                    var accordionId = {{ faq_item.id }};
+                    var accordionContent = document.getElementById('accordion-content-' + accordionId);
+                    accordionContent.style.maxHeight = 0;
+                </script> -->
+            {% endfor %}
+        {% else %}
+            <p>No frequently asked questions available.</p>
+        {% endif %}
+            
+        </div><br><br><br><br>
+</center>    
+        <script>
+            function toggleAccordion(accordionId) {
+                var accordionContent = document.getElementById('accordion-content-' + accordionId);
+                var accordionHeader = accordionContent.previousElementSibling;
+        
+                accordionHeader.classList.toggle('active');
+        
+                if (accordionHeader.classList.contains('active')) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                } else {
+                    accordionContent.style.maxHeight = 0;
+                }
+        
+                // Close other open accordion items
+                document.querySelectorAll('.accordion-header').forEach(otherHeader => {
+                    if (otherHeader !== accordionHeader) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.style.maxHeight = 0;
+                    }
+                });
+            }
+        </script>
+        <script>
+            // JavaScript to open links in a new tab or window when clicked
+            document.querySelectorAll('.accordion-content a').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();  // Prevent the default link behavior
+                    var fullURL = "https://" + this.getAttribute("href");  // Reconstruct the full URL
+                    window.open(fullURL, "_blank");  // Open the URL in a new tab or window
+                });
+            });
+        </script>
+
+       
+ <script>
+  $('#cardcarousel').carousel({
+interval: 8000
+})
+
+$('.carousel .carousel-item').each(function(){
+  var minPerSlide = 3;
+  var next = $(this).next();
+  if (!next.length) {
+  next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  for (var i=0;i<minPerSlide;i++) {
+      next=next.next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      
+      next.children(':first-child').clone().appendTo($(this));
+    }
+});
+
+</script>  
+
+
+         
+</div>
+
+</body>
+
+
+</html>
+
+{% endblock %}
+
+
